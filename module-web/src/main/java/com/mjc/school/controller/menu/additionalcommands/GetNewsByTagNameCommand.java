@@ -6,6 +6,8 @@ import com.mjc.school.controller.menu.MenuOptions;
 import com.mjc.school.controller.menuinterface.MenuCommands;
 import com.mjc.school.service.dto.TagDtoRequest;
 import com.mjc.school.service.dto.TagDtoResponse;
+import com.mjc.school.service.errorsexceptions.Errors;
+import com.mjc.school.service.errorsexceptions.NotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
@@ -25,8 +27,16 @@ public class GetNewsByTagNameCommand implements MenuCommands {
     @Override
     public void execute() {
         System.out.println(OPERATION.getText() + MenuOptions.GET_NEWS_BY_TAG_NAME.getOptionName());
-        System.out.println(ENTER_TAG_NAME);
-        String tagName = scanner.nextLine();
-        System.out.println(((TagController) tagController).getNewsByTagName(tagName));
+        try {
+            System.out.println(ENTER_TAG_NAME);
+            String tagName = scanner.nextLine();
+            if (((TagController) tagController).getNewsByTagName(tagName) != null) {
+                ((TagController) tagController).getNewsByTagName(tagName).forEach(System.out::println);
+            } else {
+                throw new NotFoundException(Errors.ERROR_TAG_NAME_NOT_EXIST.getErrorData(tagName, true));
+            }
+        } catch (NotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

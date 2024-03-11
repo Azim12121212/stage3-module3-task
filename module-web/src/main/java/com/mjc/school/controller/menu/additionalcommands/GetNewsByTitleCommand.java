@@ -27,6 +27,6 @@ public class GetNewsByTitleCommand implements MenuCommands {
         System.out.println(OPERATION.getText() + MenuOptions.GET_NEWS_BY_TITLE.getOptionName());
         System.out.println(ENTER_NEWS_TITLE);
         String title = scanner.nextLine();
-        System.out.println(((NewsController) newsController).getNewsByTitle(title));
+        ((NewsController) newsController).getNewsByTitle(title).forEach(System.out::println);
     }
 }

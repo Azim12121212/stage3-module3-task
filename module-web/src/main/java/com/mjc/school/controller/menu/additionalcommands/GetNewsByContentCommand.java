@@ -27,6 +27,6 @@ public class GetNewsByContentCommand implements MenuCommands {
         System.out.println(OPERATION.getText() + MenuOptions.GET_NEWS_BY_CONTENT.getOptionName());
         System.out.println(ENTER_NEWS_CONTENT);
         String content = scanner.nextLine();
-        System.out.println(((NewsController) newsController).getNewsByContent(content));
+        ((NewsController) newsController).getNewsByContent(content).forEach(System.out::println);
     }
 }

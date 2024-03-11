@@ -92,7 +92,7 @@ public class NewsRepository implements BaseRepository<NewsModel, Long> {
 
     // Get News by title
     public List<NewsModel> getNewsByTitle(String title) {
-        Query query = entityManager.createQuery("SELECT n FROM NewsModel n WHERE c.title LIKE :title")
+        Query query = entityManager.createQuery("SELECT n FROM NewsModel n WHERE n.title LIKE :title")
                 .setParameter("title", title);
         List<NewsModel> newsModelList = query.getResultList();
         return newsModelList;
@@ -100,7 +100,7 @@ public class NewsRepository implements BaseRepository<NewsModel, Long> {
 
     // Get News by content
     public List<NewsModel> getNewsByContent(String content) {
-        Query query = entityManager.createQuery("SELECT n FROM NewsModel n WHERE c.content LIKE :content")
+        Query query = entityManager.createQuery("SELECT n FROM NewsModel n WHERE n.content LIKE :content")
                 .setParameter("content", "%" + content + "%");
         List<NewsModel> newsModelList = query.getResultList();
         return newsModelList;

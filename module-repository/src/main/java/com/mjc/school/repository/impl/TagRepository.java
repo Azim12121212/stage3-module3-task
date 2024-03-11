@@ -31,7 +31,7 @@ public class TagRepository implements BaseRepository<TagModel, Long> {
 
     @Override
     public Optional<TagModel> readById(Long id) {
-        return Optional.of(entityManager.find(TagModel.class, id));
+        return Optional.ofNullable(entityManager.find(TagModel.class, id));
     }
 
     @Transactional
@@ -77,10 +77,13 @@ public class TagRepository implements BaseRepository<TagModel, Long> {
 
     // Get News by tag name
     public List<NewsModel> getNewsByTagName(String name) {
-        TagModel tagModel = (TagModel) entityManager
-                .createQuery("SELECT t FROM TagModel t WHERE t.name = :name")
-                .setParameter("name", name).getSingleResult();
+        Query query = entityManager.createQuery("SELECT t FROM TagModel t WHERE t.name = :name")
+                .setParameter("name", name);
+        TagModel tagModel = (TagModel) query.getSingleResult();
         List<NewsModel> newsModelList = new ArrayList<>(tagModel.getNewsModelSet());
+        for (NewsModel newsModel: tagModel.getNewsModelSet()) {
+            newsModelList.add(newsModel);
+        }
         return newsModelList;
     }
 }

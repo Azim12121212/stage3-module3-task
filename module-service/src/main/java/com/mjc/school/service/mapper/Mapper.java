@@ -14,6 +14,7 @@ import java.util.Set;
 public interface Mapper {
     Mapper INSTANCE = Mappers.getMapper(Mapper.class);
 
+    @Mapping(target = "authorDtoResponse", source = "authorModel")
     NewsDtoResponse newsModelToNewsDto(NewsModel newsModel);
 
     @Mapping(target = "createDate", ignore = true)

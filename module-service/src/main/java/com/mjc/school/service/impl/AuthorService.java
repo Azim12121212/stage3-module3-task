@@ -68,7 +68,12 @@ public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoRes
 
     // Get News by author name
     public List<NewsDtoResponse> getNewsByAuthorName(String name) {
-        List<NewsModel> newsModelList = ((AuthorRepository) authorRepository).getNewsByAuthorName(name);
-        return MyMapper.INSTANCE.newsModelListToNewsDtoList(newsModelList);
+        try {
+            List<NewsModel> newsModelList = ((AuthorRepository) authorRepository).getNewsByAuthorName(name);
+            return MyMapper.INSTANCE.newsModelListToNewsDtoList(newsModelList);
+        } catch (Exception e) {
+            Errors.ERROR_AUTHOR_NAME_NOT_EXIST.getErrorData(name, true);
+        }
+        return null;
     }
 }

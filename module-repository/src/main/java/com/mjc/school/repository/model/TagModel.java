@@ -14,7 +14,7 @@ public class TagModel implements BaseEntity<Long> {
     private Long id;
     @Column(name = "name", nullable = false)
     private String name;
-    @ManyToMany(mappedBy = "tagModelSet")
+    @ManyToMany(mappedBy = "tagModelSet", fetch = FetchType.EAGER)
     private Set<NewsModel> newsModelSet = new HashSet<>();
 
     public TagModel() {

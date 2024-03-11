@@ -26,7 +26,7 @@ public class NewsModel implements BaseEntity<Long> {
     @Column(name = "lastupdatedate", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     private LocalDateTime lastUpdateDate;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "authorid", nullable = false)
     private AuthorModel authorModel;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

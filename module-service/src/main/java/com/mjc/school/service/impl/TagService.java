@@ -69,13 +69,21 @@ public class TagService implements BaseService<TagDtoRequest, TagDtoResponse, Lo
     // Get News by tag id
     @ValidatingTagId
     public List<NewsDtoResponse> getNewsByTagId(Long id) {
-        List<NewsModel> newsModelList = ((TagRepository) tagRepository).getNewsByTagId(id);
-        return MyMapper.INSTANCE.newsModelListToNewsDtoList(newsModelList);
+        if (readById(id)!=null) {
+            List<NewsModel> newsModelList = ((TagRepository) tagRepository).getNewsByTagId(id);
+            return MyMapper.INSTANCE.newsModelListToNewsDtoList(newsModelList);
+        }
+        return null;
     }
 
     // Get News by tag name
     public List<NewsDtoResponse> getNewsByTagName(String name) {
-        List<NewsModel> newsModelList = ((TagRepository) tagRepository).getNewsByTagName(name);
-        return MyMapper.INSTANCE.newsModelListToNewsDtoList(newsModelList);
+        try {
+            List<NewsModel> newsModelList = ((TagRepository) tagRepository).getNewsByTagName(name);
+            return MyMapper.INSTANCE.newsModelListToNewsDtoList(newsModelList);
+        } catch (Exception e) {
+            Errors.ERROR_TAG_NAME_NOT_EXIST.getErrorData(name, true);
+        }
+        return null;
     }
 }

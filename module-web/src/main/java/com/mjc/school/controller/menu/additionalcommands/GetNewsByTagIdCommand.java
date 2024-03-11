@@ -38,7 +38,7 @@ public class GetNewsByTagIdCommand implements MenuCommands {
                 throw new ValidatorException(Errors.ERROR_TAG_ID_FORMAT.getErrorData("", false));
             }
 
-            System.out.println(((TagController) tagController).getNewsByTagId(Long.parseLong(tagId)));
+            ((TagController) tagController).getNewsByTagId(Long.parseLong(tagId)).forEach(System.out::println);
         } catch (ValidatorException | NotFoundException e) {
             System.out.println(e.getMessage());
         }

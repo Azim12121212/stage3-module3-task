@@ -88,15 +88,21 @@ public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse,
     // Get Author by news id – return author by provided news id.
     @ValidatingNewsId
     public AuthorDtoResponse getAuthorByNewsId(Long newsId) {
-        AuthorModel authorModel = ((NewsRepository) newsRepository).getAuthorByNewsId(newsId);
-        return MyMapper.INSTANCE.authorModelToAuthorDto(authorModel);
+        if (readById(newsId)!=null) {
+            AuthorModel authorModel = ((NewsRepository) newsRepository).getAuthorByNewsId(newsId);
+            return MyMapper.INSTANCE.authorModelToAuthorDto(authorModel);
+        }
+        return null;
     }
 
     // Get Tags by news id – return tags by provided news id.
     @ValidatingNewsId
     public Set<TagDtoResponse> getTagsByNewsId(Long newsId) {
-        Set<TagModel> tagModelSet = ((NewsRepository) newsRepository).getTagsByNewsId(newsId);
-        return MyMapper.INSTANCE.tagModelSetToTagDtoSet(tagModelSet);
+        if (readById(newsId)!=null) {
+            Set<TagModel> tagModelSet = ((NewsRepository) newsRepository).getTagsByNewsId(newsId);
+            return MyMapper.INSTANCE.tagModelSetToTagDtoSet(tagModelSet);
+        }
+        return null;
     }
 
     // Get News by title

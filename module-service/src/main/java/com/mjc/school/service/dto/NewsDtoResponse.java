@@ -111,8 +111,7 @@ public class NewsDtoResponse {
                 ", content='" + content + '\'' +
                 ", createDate=" + createDate +
                 ", lastUpdateDate=" + lastUpdateDate +
-                ", authorDtoResponse=" + authorDtoResponse +
-                ", tagDtoResponseSet=" + tagDtoResponseSet +
+                ", authorId=" + authorDtoResponse.getId() +
                 '}';
     }
 }
