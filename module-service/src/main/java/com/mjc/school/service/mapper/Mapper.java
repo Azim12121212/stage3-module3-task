@@ -25,6 +25,8 @@ public interface Mapper {
 
     List<NewsDtoResponse> newsModelListToNewsDtoList(List<NewsModel> newsModelList);
 
+    Set<NewsDtoResponse> newsModelSetToNewsDtoSet(Set<NewsModel> newsModelSet);
+
     AuthorDtoResponse authorModelToAuthorDto(AuthorModel authorModel);
 
     @Mapping(target = "createDate", ignore = true)

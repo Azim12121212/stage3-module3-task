@@ -48,6 +48,18 @@ public class MyMapper implements Mapper {
     }
 
     @Override
+    public Set<NewsDtoResponse> newsModelSetToNewsDtoSet(Set<NewsModel> newsModelSet) {
+        if (newsModelSet==null) {
+            return null;
+        }
+        Set<NewsDtoResponse> newsDtoResponseSet = new HashSet<>(newsModelSet.size());
+        for (NewsModel newsModel: newsModelSet) {
+            newsDtoResponseSet.add(newsModelToNewsDto(newsModel));
+        }
+        return newsDtoResponseSet;
+    }
+
+    @Override
     public AuthorDtoResponse authorModelToAuthorDto(AuthorModel authorModel) {
         if (authorModel==null) {
             return null;

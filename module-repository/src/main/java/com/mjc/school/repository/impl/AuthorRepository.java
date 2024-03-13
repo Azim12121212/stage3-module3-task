@@ -79,7 +79,7 @@ public class AuthorRepository implements BaseRepository<AuthorModel, Long> {
         AuthorModel authorModel = (AuthorModel) entityManager
                 .createQuery("SELECT a FROM AuthorModel a WHERE a.name = :name")
                 .setParameter("name", name).getSingleResult();
-        System.out.println(authorModel.getNewsModelList());
+
         return authorModel.getNewsModelList();
     }
 }

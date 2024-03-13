@@ -71,8 +71,9 @@ public class CreateNewsCommand implements MenuCommands {
                 newsDtoRequest = new NewsDtoRequest(title, content, Long.parseLong(authorId));
             }
 
-            if (newsController.create(newsDtoRequest)!=null) {
-                System.out.println(newsController.create(newsDtoRequest));
+            NewsDtoResponse newsDtoResponse = newsController.create(newsDtoRequest);
+            if (newsDtoResponse!=null) {
+                System.out.println(newsDtoResponse);
             } else {
                 throw new NotFoundException(Errors.ERROR_NEWS_AUTHOR_ID_NOT_EXIST.getErrorData(authorId, false));
             }

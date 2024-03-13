@@ -10,10 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Repository
 public class TagRepository implements BaseRepository<TagModel, Long> {
@@ -77,13 +74,18 @@ public class TagRepository implements BaseRepository<TagModel, Long> {
 
     // Get News by tag name
     public List<NewsModel> getNewsByTagName(String name) {
-        Query query = entityManager.createQuery("SELECT t FROM TagModel t WHERE t.name = :name")
-                .setParameter("name", name);
-        TagModel tagModel = (TagModel) query.getSingleResult();
-        List<NewsModel> newsModelList = new ArrayList<>(tagModel.getNewsModelSet());
-        for (NewsModel newsModel: tagModel.getNewsModelSet()) {
-            newsModelList.add(newsModel);
+        Query query = entityManager.createQuery("SELECT t FROM TagModel t WHERE t.name LIKE :name")
+                .setParameter("name", "%" + name + "%");
+
+        List<TagModel> tagModelList = query.getResultList();
+
+        Set<NewsModel> newsModelSet = new HashSet<>();
+        for (NewsModel newsModel: tagModelList.iterator().next().getNewsModelSet()) {
+            newsModelSet.add(newsModel);
         }
+
+        List<NewsModel> newsModelList = new ArrayList<>(newsModelSet);
+
         return newsModelList;
     }
 }
