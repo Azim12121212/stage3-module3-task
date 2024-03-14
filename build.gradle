@@ -32,8 +32,8 @@ subprojects {
         //testImplementation "com.tngtech.archunit:archunit-junit5:1.0.0"
 
         // now
-        testImplementation "com.tngtech.archunit:archunit-junit5:$archUnitVersion"
         testImplementation "com.tngtech.archunit:archunit:$archUnitVersion"
+        testImplementation "com.tngtech.archunit:archunit-junit5:1.0.0"
 
         annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
         implementation "org.mapstruct:mapstruct:$mapstructVersion"
