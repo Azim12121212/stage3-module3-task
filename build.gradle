@@ -28,7 +28,12 @@ subprojects {
         testImplementation "org.junit.jupiter:junit-jupiter-api:$jupiterVersion"
         testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jupiterVersion"
 
-        testImplementation "com.tngtech.archunit:archunit-junit5:1.0.0"
+        // before
+        //testImplementation "com.tngtech.archunit:archunit-junit5:1.0.0"
+
+        // now
+        testImplementation "com.tngtech.archunit:archunit-junit5:$archUnitVersion"
+        testImplementation "com.tngtech.archunit:archunit:$archUnitVersion"
 
         annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
         implementation "org.mapstruct:mapstruct:$mapstructVersion"
@@ -40,6 +45,7 @@ subprojects {
         //implementation 'org.hibernate:hibernate-core:5.4.32.Final'
         // https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
         //implementation 'org.hibernate:hibernate-entitymanager:5.4.32.Final'
+
         // https://mvnrepository.com/artifact/org.postgresql/postgresql
         implementation 'org.postgresql:postgresql:42.7.2'
 
