@@ -17,7 +17,6 @@ public class TagRepository implements BaseRepository<TagModel, Long> {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Autowired
     public TagRepository() {
     }
 

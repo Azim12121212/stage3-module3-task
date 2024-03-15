@@ -23,7 +23,6 @@ public class NewsRepository implements BaseRepository<NewsModel, Long> {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Autowired
     public NewsRepository() {
     }
 

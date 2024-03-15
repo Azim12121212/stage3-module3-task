@@ -21,7 +21,6 @@ public class AuthorRepository implements BaseRepository<AuthorModel, Long> {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Autowired
     public AuthorRepository() {
     }
 
