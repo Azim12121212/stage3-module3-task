@@ -33,13 +33,15 @@ subprojects {
 
         // now
         testImplementation "com.tngtech.archunit:archunit:$archUnitVersion"
-        testImplementation "com.tngtech.archunit:archunit-junit5:1.2.1"
+        testImplementation "com.tngtech.archunit:archunit-junit5:1.0.0"
 
         annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
         implementation "org.mapstruct:mapstruct:$mapstructVersion"
 
         implementation "org.aspectj:aspectjrt:1.9.7"
         implementation "org.aspectj:aspectjweaver:1.9.7"
+
+        testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.24.2'
 
         // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
         //implementation 'org.hibernate:hibernate-core:5.4.32.Final'
