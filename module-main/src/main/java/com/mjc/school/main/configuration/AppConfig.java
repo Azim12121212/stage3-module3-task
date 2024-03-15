@@ -7,7 +7,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 
 @Configuration
-@ComponentScan({"com.mjc.school.*"})
+@ComponentScan(basePackages = {"com.mjc.school.*"})
 @EnableAspectJAutoProxy
 @EntityScan(basePackages = {"com.mjc.school.repository.model"})
 public class AppConfig {
